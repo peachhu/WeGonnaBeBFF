@@ -15,3 +15,4 @@ const AllergenSchema = new mongoose.Schema({
 
 module.exports = mongoose.model("Allergen", AllergenSchema);
 
+//
