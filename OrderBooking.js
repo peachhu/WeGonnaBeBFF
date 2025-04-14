@@ -16,7 +16,7 @@ const OrderBookingSchema = new mongoose.Schema({
   },
   totalPrice: {
     type: Number,
-    required: true,
+    required: true, //ราคารวม
     min: 0,
   },
   phoneNumber: {
