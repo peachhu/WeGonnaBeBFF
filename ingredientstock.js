@@ -22,7 +22,7 @@ const IngredientSchema = new mongoose.Schema({
   restaurant: {
     type: mongoose.Schema.ObjectId,
     ref: "Restaurant",
-    required: [true, "Ingredient must belong to a restaurant."]
+    required: [true, "Ingredient must belong to a restaurant."] //เช็คในfieldนี้ว่าร้านไหนอะไรหมด,วัตถุดิบแต่ละร้านแยกกัน
   },
   is_out_of_stock: {
     type: Boolean,
@@ -50,4 +50,3 @@ IngredientSchema.pre("save", function (next) {
 module.exports = mongoose.model("Ingredient", IngredientSchema);
 
 
-//
