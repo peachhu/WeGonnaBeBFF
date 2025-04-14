@@ -3,39 +3,57 @@ const mongoose = require("mongoose");
 const OrderBookingSchema = new mongoose.Schema({
   reservation: {
     type: mongoose.Schema.ObjectId,
-    ref: "Reservation", // เชื่อมโยงกับ Reservation
+    ref: "Reservation",
     required: true,
   },
   checkInStatus: {
     type: Boolean,
-    default: false, // ยังไม่เช็คอิน
+    default: false,
   },
   checkInTime: {
     type: Date,
-    default: null, // เวลาเช็คอินจริง
+    default: null,
   },
   totalPrice: {
     type: Number,
-    required: true, //ราคารวม
+    required: true,
     min: 0,
   },
   phoneNumber: {
     type: String,
     required: true,
-    match: /^[0-9]{9,15}$/, // ตรวจสอบเบอร์โทร
+    match: /^[0-9]{9,15}$/,
   },
   status: {
     type: String,
     enum: ["booked", "confirmed", "checked-in", "preparing", "completed", "no-show", "cancelled"],
-    default: "booked", // สถานะของการจอง
+    default: "booked",
   },
   createdAt: {
     type: Date,
-    default: Date.now, // เวลาที่การจองถูกสร้าง
+    default: Date.now,
   },
+
+  // เพิ่ม orderItems 
+  orderItems: [
+    {
+      menuItem: {
+        type: mongoose.Schema.ObjectId,
+        ref: "MenuItem",
+        required: true,
+      },
+      quantity: {
+        type: Number,
+        required: true,
+        min: 1,
+      },
+      note: {
+        type: String,
+        default: "",
+      },
+    },
+  ],
 });
 
 module.exports = mongoose.model("OrderBooking", OrderBookingSchema);
-
-//
 

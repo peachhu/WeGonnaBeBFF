@@ -22,6 +22,7 @@ const IngredientSchema = new mongoose.Schema({
   restaurant: {
     type: mongoose.Schema.ObjectId,
     ref: "Restaurant",
+    required: [true, "Ingredient must belong to a restaurant."]
   },
   is_out_of_stock: {
     type: Boolean,
